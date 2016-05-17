@@ -170,11 +170,11 @@
   <ItemGroup>
     <ClInclude Include="..\inc\Globals.h" />
     <ClInclude Include="..\inc\InputInterface.h" />
-    <ClInclude Include="..\inc\TestClass.h" />
+    <ClInclude Include="..\inc\Scanner.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\InputInterface.cpp" />
-    <ClCompile Include="..\src\TestClass.cpp" />
+    <ClCompile Include="..\src\Scanner.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

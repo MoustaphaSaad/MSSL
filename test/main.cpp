@@ -1,5 +1,7 @@
 #include <iostream>
 #include "InputInterface.h"
+#include "Scanner.h"
+
 using namespace std;
 
 int main(){
@@ -7,15 +9,25 @@ int main(){
 	MSSL::Input::InputInterface input;
 	input.setStream("mostafa");
 	input.push("saad");
-	while (!input.eof())
-		cout << input.consume();
-	cout << endl;
 
-	MSSL::Input::IInputInterface ii(std::cin);
-	
-	std::string line;
-	while (std::getline(ii.m_stream, line))
-		cout << line << endl;
+	MSSL::Scan::Scanner scn;
+
+	MSSL::Scan::Tag* tag = new MSSL::Scan::Tag();
+	tag->isValid = true;
+	tag->name = "firstname";
+	scn.addScanMachine(std::regex("mostafa"), tag);
+
+	tag = new MSSL::Scan::Tag();
+	tag->isValid = true;
+	tag->name = "lastname";
+	scn.addScanMachine(std::regex("saad"), tag);
+
+	auto result = scn.scan(input);
+	for (auto r : result)
+	{
+		std::cout << std::get<0>(r) <<", "<< std::get<1>(r)->name << std::endl;
+	}
+
 
     return 0;
 }

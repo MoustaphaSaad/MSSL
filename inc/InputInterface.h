@@ -1,27 +1,23 @@
 #pragma once
 
 #include "Globals.h"
-#include <sstream>
+#include <string>
 
 namespace MSSL
 {
 	namespace Input
 	{
-		class MSSL_API IInputInterface
-		{
-		public:
-			std::istream& m_stream;
-
-			IInputInterface(std::istream& stream);
-
-		};
-
 		class MSSL_API InputInterface
 		{
 		protected:
-			std::stringstream m_stream;
+			std::string m_stream;
+			std::size_t m_currentChar;
 
 		public:
+			virtual ~InputInterface()
+			{
+			}
+
 			explicit InputInterface(const std::string& text);
 			InputInterface();
 
@@ -33,6 +29,10 @@ namespace MSSL
 			char consume();
 
 			bool eof();
+
+			std::string getString() const;
+
+			virtual std::string delimiterCut();
 		};
 	}
 }

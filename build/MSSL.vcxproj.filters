@@ -12,18 +12,18 @@
     <ClInclude Include="..\inc\Globals.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\TestClass.h">
+    <ClInclude Include="..\inc\InputInterface.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\InputInterface.h">
+    <ClInclude Include="..\inc\Scanner.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\TestClass.cpp">
+    <ClCompile Include="..\src\InputInterface.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\InputInterface.cpp">
+    <ClCompile Include="..\src\Scanner.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
