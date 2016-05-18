@@ -11,11 +11,17 @@ namespace MSSL
 {
 	namespace Scan
 	{
-		struct Tag
+		struct MSSL_API Tag
 		{
 			bool isValid;
 			std::string name;
+			std::function<bool(Input::InputInterface&)> tagFunction;
+
+			Tag();
 		};
+
+		MSSL_API Tag* make_tag(std::string name, std::function<bool(Input::InputInterface&)> function = nullptr);
+		MSSL_API bool scan_error(std::string input, Input::Position position);
 
 		class MSSL_API Scanner
 		{
