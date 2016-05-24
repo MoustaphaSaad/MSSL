@@ -3,14 +3,12 @@ using namespace MSSL::Automata;
 
 State::State()
 {
-	this->m_id = -1;
-	this->m_accept = false;
+	isAccept = false;
 }
 
-State::State(int id, bool accept)
+State::State(bool accept)
 {
-	this->m_id = id;
-	this->m_accept = accept;
+	isAccept = accept;
 }
 
 State::~State()
@@ -33,11 +31,6 @@ std::weak_ptr<State> State::consume(char c)
 		return lower_bound->second;
 	}
 	return std::weak_ptr<State>();
-}
-
-bool State::isAcceptState()
-{
-	return this->m_accept;
 }
 
 void State::getTransition(char input, std::vector<std::weak_ptr<State>>& states)

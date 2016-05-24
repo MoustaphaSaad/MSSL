@@ -2,6 +2,7 @@
 #include "InputInterface.h"
 #include "Scanner.h"
 #include "Log.h"
+#include "Regex.h"
 
 using namespace std;
 
@@ -26,5 +27,22 @@ int main(){
 	std::cout << MSSL::Log::getLogText();
 
 
+	std::cout << "test regex" << std::endl;
+	auto regex_instance = MSSL::Automata::Regex::Create("mostafa");
+	std::string name = "mostafax";
+	for (auto c : name) 
+	{
+		auto state = regex_instance->consume(c);
+		std::cout << static_cast<int>(state) << std::endl;
+		if (state == MSSL::Automata::ConsumptionState::ACCEPT)
+			std::cout << "accept" << std::endl;
+		else if (state == MSSL::Automata::ConsumptionState::DEADEND)
+			std::cout << "deadend" << std::endl;
+		else if (state == MSSL::Automata::ConsumptionState::NONE)
+		{
+			std::cout << "NONE" << std::endl;
+			break;
+		}
+	}
     return 0;
 }
