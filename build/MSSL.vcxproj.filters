@@ -21,6 +21,12 @@
     <ClInclude Include="..\inc\Log.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\inc\Regex.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\State.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\InputInterface.cpp">
@@ -30,6 +36,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Log.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\State.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Regex.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
