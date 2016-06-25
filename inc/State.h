@@ -7,24 +7,75 @@ namespace MSSL
 {
 	namespace Automata
 	{
-		class MSSL_API State
+		/*
+		 * represents a state in a machine
+		 * it has a transitions to other states but it doesn't own the states to just weak_ptrs to them
+		 * also it can accept arbitrary input as T
+		 */
+		template<typename T>
+		class State
 		{
 		protected:
-			std::unordered_multimap<char, std::weak_ptr<State>> m_transition;
+			//transitions to other states that accept a T and go to states [a, b, c ...]
+			std::unordered_multimap<T, std::weak_ptr<State<T>>> m_transitions;
 		public:
-
+			//to indicate if this state is an accept state
 			bool isAccept;
 
-			State();
-			State(bool accept);
+			State() 
+			{
+				this->isAccept = false;
+			}
 
-			~State();
+			//accept constructor
+			State(bool accept): isAccept(accept)
+			{}
+
+			~State() 
+			{
+				this->m_transitions.clear();
+			}
 			
-			void addTransition(char input, std::weak_ptr<State> state);
+			/*
+				adds a transition when the input is "input" then there's a transition to state "state"
+			*/
+			void 
+			addTransition(T input, std::weak_ptr<State<T>> state)
+			{
+				this->m_transitions.insert(std::make_pair(input, state));
+			}
 
-			std::weak_ptr<State> consume(char c);
+			/*
+				consumes an input "input" and returns the first state that accepts this input
+			*/
+			std::weak_ptr<State>
+			consume(T input) 
+			{
+				auto lower_bound = this->m_transitions.lower_bound(input);
+				auto upper_bound = this->m_transitions.upper_bound(input);
 
-			void getTransition(char input, std::vector<std::weak_ptr<State>> &states);
+				while (lower_bound != upper_bound)
+				{
+					return lower_bound->second;
+				}
+				return std::weak_ptr<State>();
+			}
+
+			/*
+				consumes an input "input" and returns all the states that accept this input
+			*/
+			void
+			getTransitions(T input, std::vector<std::weak_ptr<State>> &states)
+			{
+				states.clear();
+				auto lower_bound = this->m_transitions.lower_bound(input);
+				auto upper_bound = this->m_transitions.upper_bound(input);
+				while (lower_bound != upper_bound)
+				{
+					states.push_back(lower_bound->second);
+					++lower_bound;
+				}
+			}
 		};
 	}
 }

@@ -1,31 +1,23 @@
 #pragma once
+
 #include "Globals.h"
-#include "State.h"
-#include <set>
-#include <stack>
+#include "NFA.h"
 
 namespace MSSL
 {
-	namespace Automata {
-		enum class ConsumptionState{NONE, ACCEPT, OK, DEADEND};
-		class MSSL_API Regex
-		{
-		protected:
-			std::shared_ptr<State> INIT_STATE, m_currentState;
+	template<typename FSM = Automata::NFA<char>>
+	class MSSL_API Regex {
+	protected:
+		FSM m_fsm;
 
-			std::set<std::shared_ptr<State>> m_memberStates;
+	public:
 
-			std::stack<std::deque<std::weak_ptr<State>>> m_operandStack;
-			std::stack<char> m_operatorStack;
-		public:
-			Regex();
-			~Regex();
+		Regex();
 
-			ConsumptionState consume(char c);
+		setFSM(FSM fsm);
 
-			void reset();
+		Automata::MachineState consume(typename FSM::INPUT_TYPE input);
 
-			static std::shared_ptr<Regex> Create(std::string exp);
-		};
-	}
+
+	};
 }

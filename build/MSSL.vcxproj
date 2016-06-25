@@ -171,16 +171,14 @@
     <ClInclude Include="..\inc\Globals.h" />
     <ClInclude Include="..\inc\InputInterface.h" />
     <ClInclude Include="..\inc\Log.h" />
-    <ClInclude Include="..\inc\Regex.h" />
+    <ClInclude Include="..\inc\NFA.h" />
     <ClInclude Include="..\inc\Scanner.h" />
     <ClInclude Include="..\inc\State.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\InputInterface.cpp" />
     <ClCompile Include="..\src\Log.cpp" />
-    <ClCompile Include="..\src\Regex.cpp" />
     <ClCompile Include="..\src\Scanner.cpp" />
-    <ClCompile Include="..\src\State.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
