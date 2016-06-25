@@ -27,6 +27,9 @@
     <ClInclude Include="..\inc\NFA.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\inc\Regex.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\InputInterface.cpp">

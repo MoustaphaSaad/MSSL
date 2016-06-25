@@ -172,6 +172,7 @@
     <ClInclude Include="..\inc\InputInterface.h" />
     <ClInclude Include="..\inc\Log.h" />
     <ClInclude Include="..\inc\NFA.h" />
+    <ClInclude Include="..\inc\Regex.h" />
     <ClInclude Include="..\inc\Scanner.h" />
     <ClInclude Include="..\inc\State.h" />
   </ItemGroup>
